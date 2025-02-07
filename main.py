@@ -8,10 +8,8 @@ data = [
 ]
 
 def find_item_by_id(item_id):
-    for item in data:  # Long function issue
-        if item['id'] == item_id:
-            return item
-    return None
+    return next((item for item in data if item['id'] == item_id), None)
+
 
 @app.route('/')
 def home():
