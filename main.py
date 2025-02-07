@@ -29,7 +29,7 @@ def get_item(item_id):
 @app.route('/items', methods=['POST'])
 def add_item():
     new_item = request.json
-    new_item['id'] = len(data) + 1  # Magic number issue
+    new_item['id'] = max([item['id'] for item in data], default=0) + 1
     data.append(new_item)
     return jsonify(new_item), 201
 
