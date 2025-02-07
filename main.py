@@ -36,11 +36,7 @@ def add_item():
 @app.route('/items/<int:item_id>', methods=['DELETE'])
 def delete_item(item_id):
     global data
-    new_data = []  # Duplicate code issue
-    for item in data:
-        if item['id'] != item_id:
-            new_data.append(item)
-    data = new_data
+    data = [item for item in data if item['id'] != item_id]
     return jsonify({'message': 'Item deleted'})
 
 @app.route('/items/<int:item_id>', methods=['PUT'])
